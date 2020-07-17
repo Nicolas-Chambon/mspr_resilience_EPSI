@@ -1,0 +1,20 @@
+version: '3'
+services:
+  portail-resilience:
+    container_name: portail-resilience
+    build: .
+    expose:
+      - 80
+    restart: always
+    env_file: ./server/.env # auto-load your .env file
+    environment:
+      NODE_ENV: production
+      PORT: 80
+      VIRTUAL_HOST: portail.resilience34.ml
+      LETSENCRYPT_HOST: portail.resilience34.ml
+      LETSENCRYPT_EMAIL: sid.djilalisaiah@epsi.fr
+
+networks:
+  default:
+    external:
+      name: webproxy
